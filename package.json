@@ -1,4 +1,12 @@
 {
+  "name": "theressefoodmenu",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
+{
   "name": "react-vite-tailwind",
   "private": true,
   "version": "0.0.0",
