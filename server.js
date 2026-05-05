@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const db = require("./db");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import db from "./db.js";
 
 dotenv.config();
 
@@ -10,44 +10,40 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// =====================
-// GET ALL MENU ITEMS
-// =====================
+// TEST ROUTE
+app.get("/", (req, res) => {
+  res.send("Theresse Food Menu API running...");
+});
+
+// GET MENU
 app.get("/menu", (req, res) => {
-  const sql = "SELECT * FROM menu";
-  db.query(sql, (err, result) => {
+  db.query("SELECT * FROM menu", (err, result) => {
     if (err) return res.json(err);
-    return res.json(result);
+    res.json(result);
   });
 });
 
-// =====================
-// ADD MENU ITEM (ADMIN)
-// =====================
+// ADD MENU
 app.post("/menu", (req, res) => {
   const { name, price, description, image } = req.body;
 
-  const sql = "INSERT INTO menu (name, price, description, image) VALUES (?, ?, ?, ?)";
-  db.query(sql, [name, price, description, image], (err, result) => {
+  const sql =
+    "INSERT INTO menu (name, price, description, image) VALUES (?, ?, ?, ?)";
+
+  db.query(sql, [name, price, description, image], (err) => {
     if (err) return res.json(err);
-    return res.json({ message: "Menu added successfully" });
+    res.json({ message: "Added successfully" });
   });
 });
 
-// =====================
-// DELETE MENU ITEM
-// =====================
+// DELETE MENU
 app.delete("/menu/:id", (req, res) => {
-  const sql = "DELETE FROM menu WHERE id = ?";
-  db.query(sql, [req.params.id], (err, result) => {
+  db.query("DELETE FROM menu WHERE id = ?", [req.params.id], (err) => {
     if (err) return res.json(err);
-    return res.json({ message: "Deleted successfully" });
+    res.json({ message: "Deleted" });
   });
 });
 
-// =====================
-// START SERVER
-// =====================
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
