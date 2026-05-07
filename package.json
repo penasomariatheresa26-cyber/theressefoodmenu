@@ -1,39 +1,31 @@
 {
   "name": "theressefoodmenu",
   "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  }
-}
-{
-  "name": "react-vite-tailwind",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
-    "clsx": "2.1.1",
-    "lucide-react": "^1.14.0",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-hot-toast": "^2.6.0",
-    "react-router-dom": "^7.15.0",
-    "tailwind-merge": "3.4.0"
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.28.0",
+    "tailwind-merge": "^2.5.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "4.1.17",
-    "@types/node": "22.19.17",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.1",
-    "tailwindcss": "4.1.17",
-    "typescript": "5.9.3",
-    "vite": "7.3.2",
-    "vite-plugin-singlefile": "2.3.0"
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.4.0",
+    "vite-plugin-singlefile": "^2.0.0"
   }
 }
