@@ -1,51 +1,58 @@
 import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import db from "./db.js";
-
-dotenv.config();
+import mysql from "mysql2/promise";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
-app.use(cors());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.json());
 
-// TEST ROUTE
-app.get("/", (req, res) => {
-  res.send("Theresse Food Menu API running...");
+// Database pool
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: Number(process.env.MYSQL_PORT) || 3306,
+  ssl: {
+    rejectUnauthorized: false
+  },
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-// GET MENU
-app.get("/menu", (req, res) => {
-  db.query("SELECT * FROM menu", (err, result) => {
-    if (err) return res.json(err);
-    res.json(result);
-  });
+// Database test route only
+app.get("/api/db-test", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT NOW() AS now");
+    res.json({
+      success: true,
+      message: "Database connected successfully",
+      time: rows[0].now
+    });
+  } catch (err) {
+    console.error("Database query failed:", err);
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
+  }
 });
 
-// ADD MENU
-app.post("/menu", (req, res) => {
-  const { name, price, description, image } = req.body;
+// Serve React/Vite website
+app.use(express.static(path.join(__dirname, "dist")));
 
-  const sql =
-    "INSERT INTO menu (name, price, description, image) VALUES (?, ?, ?, ?)";
-
-  db.query(sql, [name, price, description, image], (err) => {
-    if (err) return res.json(err);
-    res.json({ message: "Added successfully" });
-  });
+// React fallback route
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-// DELETE MENU
-app.delete("/menu/:id", (req, res) => {
-  db.query("DELETE FROM menu WHERE id = ?", [req.params.id], (err) => {
-    if (err) return res.json(err);
-    res.json({ message: "Deleted" });
-  });
-});
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log("Server running on port " + PORT);
 });
