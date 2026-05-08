@@ -30,7 +30,7 @@ export default function WalletPage() {
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
             <p className="text-white/70 text-sm mb-1">Available Balance</p>
             <h2 className="font-display text-5xl font-bold mb-6">
-              ${state.walletBalance.toFixed(2)}
+              ₱{state.walletBalance.toFixed(2)}
             </h2>
             <button
               onClick={() => setShowTopUp(!showTopUp)}
@@ -59,14 +59,14 @@ export default function WalletPage() {
                       : 'border-gray-200 text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  ${amount}
+                  ₱{amount}
                 </button>
               ))}
             </div>
 
             <div className="flex gap-3">
               <div className="relative flex-1">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₱</span>
                 <input
                   type="number"
                   value={topUpAmount}
@@ -126,7 +126,7 @@ export default function WalletPage() {
                   <span
                     className={`font-bold ${txn.type === 'topup' ? 'text-green-600' : 'text-red-600'}`}
                   >
-                    {txn.type === 'topup' ? '+' : '-'}${txn.amount.toFixed(2)}
+                    {txn.type === 'topup' ? '+' : '-'}₱{txn.amount.toFixed(2)}
                   </span>
                 </div>
               ))}
