@@ -90,7 +90,8 @@ export default function OrdersPage({ onNavigate }: OrdersPageProps) {
                         <p className="font-medium text-gray-900 text-sm truncate">{item.menuItem.name}</p>
                         <p className="text-gray-500 text-xs">Qty: {item.quantity}</p>
                       </div>
-                      <p className="font-semibold text-sm">${(item.menuItem.price * item.quantity).toFixed(2)}</p>
+                      {/* DISPLAY: PESO CURRENCY */}
+                      <p className="font-semibold text-sm">₱{(item.menuItem.price * item.quantity).toFixed(2)}</p>
                     </div>
                   ))}
                 </div>
@@ -104,7 +105,8 @@ export default function OrdersPage({ onNavigate }: OrdersPageProps) {
                 </div>
                 <div className="text-right">
                   <p className="text-sm text-gray-500">Total</p>
-                  <p className="text-xl font-bold text-primary">${order.total.toFixed(2)}</p>
+                  {/* DISPLAY: PESO CURRENCY */}
+                  <p className="text-xl font-bold text-primary">₱{order.total.toFixed(2)}</p>
                 </div>
               </div>
             </div>
@@ -114,3 +116,4 @@ export default function OrdersPage({ onNavigate }: OrdersPageProps) {
     </div>
   );
 }
+
