@@ -126,7 +126,8 @@ export default function MenuPage({ onNavigate }: MenuPageProps) {
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
                   <div className="absolute top-3 right-3 bg-white text-primary px-3 py-1 rounded-full text-sm font-bold shadow">
-                    ${item.price.toFixed(2)}
+                    {/* DISPLAY: PESO CURRENCY */}
+                    ₱{item.price.toFixed(2)}
                   </div>
                   {item.featured && (
                     <div className="absolute top-3 left-3 bg-accent text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
