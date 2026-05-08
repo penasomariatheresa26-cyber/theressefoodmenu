@@ -18,7 +18,7 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
 
   const stats = [
     { icon: ShoppingBag, label: 'Total Orders', value: state.orders.length, color: 'bg-blue-100 text-blue-600' },
-    { icon: DollarSign, label: 'Total Revenue', value: `$${totalRevenue.toFixed(2)}`, color: 'bg-green-100 text-green-600' },
+    { icon: DollarSign, label: 'Total Revenue', value: `₱₱{totalRevenue.toFixed(2)}`, color: 'bg-green-100 text-green-600' },
     { icon: Package, label: 'Menu Items', value: state.menuItems.length, color: 'bg-purple-100 text-purple-600' },
     { icon: TrendingUp, label: 'Delivered', value: deliveredOrders, color: 'bg-yellow-100 text-yellow-600' },
   ];
@@ -41,9 +41,9 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
             <div
               key={i}
               className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 animate-fade-in-up"
-              style={{ animationDelay: `${i * 0.05}s` }}
+              style={{ animationDelay: `₱{i * 0.05}s` }}
             >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${stat.color} mb-4`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ₱{stat.color} mb-4`}>
                 <stat.icon size={22} />
               </div>
               <p className="text-gray-500 text-sm">{stat.label}</p>
@@ -64,7 +64,7 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
                 { label: 'Delivered', count: deliveredOrders, icon: CheckCircle, color: 'bg-green-500' },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${item.color} text-white`}>
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ₱{item.color} text-white`}>
                     <item.icon size={18} />
                   </div>
                   <div className="flex-1">
@@ -74,9 +74,9 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
                     </div>
                     <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full ${item.color} transition-all duration-500`}
+                        className={`h-full rounded-full ₱{item.color} transition-all duration-500`}
                         style={{
-                          width: `${state.orders.length > 0 ? (item.count / state.orders.length) * 100 : 0}%`,
+                          width: `₱{state.orders.length > 0 ? (item.count / state.orders.length) * 100 : 0}%`,
                         }}
                       />
                     </div>
@@ -118,8 +118,8 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
                       <p className="text-xs text-gray-500">{order.items.length} item(s)</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-bold text-gray-900">${order.total.toFixed(2)}</p>
-                      <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${
+                      <p className="text-sm font-bold text-gray-900">₱{order.total.toFixed(2)}</p>
+                      <span className={`text-xs px-2 py-0.5 rounded-full capitalize ₱{
                         order.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
                         order.status === 'preparing' ? 'bg-blue-100 text-blue-700' :
                         order.status === 'delivered' ? 'bg-green-100 text-green-700' :
