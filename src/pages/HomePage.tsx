@@ -106,7 +106,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-3 right-3 bg-accent text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    ${item.price.toFixed(2)}
+                    {/* CHANGED TO PESO CURRENCY */}
+                    ₱{item.price.toFixed(2)}
                   </div>
                   <div className="absolute top-3 left-3 bg-primary text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
                     <Star size={12} fill="currentColor" /> Featured
@@ -177,9 +178,9 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <div>
               <h4 className="font-semibold mb-3">Contact Us</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>📍 123 Food Street, Manila</li>
-                <li>📞 +63 912 345 6789</li>
-                <li>✉️ hello@theresse.com</li>
+                <li>📍 Hinunangan Southern, Leyte</li>
+                <li>📞 +63 9552085854</li>
+                <li>✉️ penasomariatheresa26@gmail.com</li>
               </ul>
             </div>
           </div>
